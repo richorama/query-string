@@ -25,10 +25,10 @@
 			var key = parts[0];
 			var val = parts[1];
 
-			key = decodeURIComponent(key);
+			key = key;
 			// missing `=` should be `null`:
 			// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
-			val = val === undefined ? null : decodeURIComponent(val);
+			val = val === undefined ? null : val;
 
 			if (!ret.hasOwnProperty(key)) {
 				ret[key] = val;
@@ -48,11 +48,11 @@
 
 			if (Array.isArray(val)) {
 				return val.map(function (val2) {
-					return encodeURIComponent(key) + '=' + encodeURIComponent(val2);
+					return key + '=' + val2;
 				}).join('&');
 			}
 
-			return encodeURIComponent(key) + '=' + encodeURIComponent(val);
+			return key + '=' + val;
 		}).join('&') : '';
 	};
 
